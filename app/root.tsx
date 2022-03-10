@@ -42,9 +42,11 @@ export function ErrorBoundary({ error }: { error: Error }) {
     </Document>
   );
 }
+
 // https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
   let caught = useCatch();
+
   let message;
   switch (caught.status) {
     case 401:
@@ -60,6 +62,7 @@ export function CatchBoundary() {
         <p>Oops! Looks like you tried to visit a page that does not exist.</p>
       );
       break;
+
     default:
       throw new Error(caught.data || caught.statusText);
   }
