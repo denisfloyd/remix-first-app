@@ -6,10 +6,14 @@ export const loader: LoaderFunction = async ({
   params,
 }): Promise<Types.Commits.LoaderData> => {
   return {
-    user: await GithubApi.getGithubUser(params.username),
+    user: await GithubApi.getUser(params.username),
     commits: await GithubApi.getCommits(params.reponame, params.username),
   };
 };
+
+export function ErrorBoundary() {
+  return <h3>Whoops. Something went wrong [Commits]</h3>;
+}
 
 export default function () {
   const { user, commits } = useLoaderData<Types.Commits.LoaderData>();
