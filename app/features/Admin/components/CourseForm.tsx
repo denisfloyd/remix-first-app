@@ -1,12 +1,14 @@
+import { Course } from "@prisma/client";
 import { ActionData } from "~/routes/admin.courses/new";
 
 export interface CourseFormProps {
   actionData?: ActionData;
+  course?: Course;
 }
 
-export function CourseForm({ actionData }: CourseFormProps) {
+export function CourseForm({ actionData, course }: CourseFormProps) {
   return (
-    <form action="new" method="POST">
+    <form method="POST">
       <div className="shadow sm:rounded-md sm:overflow-hidden">
         <div className="bg-white py-6 px-4 space-y-6 sm:p-6">
           <div>
@@ -28,7 +30,8 @@ export function CourseForm({ actionData }: CourseFormProps) {
                 name="name"
                 id="name"
                 // minLength={6}
-                defaultValue={actionData?.formValues?.name}
+                defaultValue={actionData?.formValues?.name ?? course?.name}
+                key={actionData?.formValues?.name ?? course?.name}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
               {actionData?.formErrors?.name ? (
@@ -51,7 +54,10 @@ export function CourseForm({ actionData }: CourseFormProps) {
                 id="description"
                 // minLength={12}
                 autoComplete="family-name"
-                defaultValue={actionData?.formValues?.description}
+                defaultValue={
+                  actionData?.formValues?.description ?? course?.description
+                }
+                key={actionData?.formValues?.description ?? course?.description}
                 className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
               {actionData?.formErrors?.description ? (
