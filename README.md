@@ -1,4 +1,4 @@
-# 30 Minutes of Code - Season 2 - Remix.run
+# Remix.run - First app
 
 Este repositório contém uma aplicação desenvolvida com [Remix.run](https://remix.run) e oferece o código fonte criado nos vídeos.
 
